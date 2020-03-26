@@ -1,0 +1,48 @@
+name: main
+on:
+  push:
+    branches:
+      - master
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Mkdir reports
+        run: mkdir -p ~/reports
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+      - name: Test unit
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test:coverage:unit --ci --coverageDirectory ./reports/unit
+      - name: Test integration
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test:coverage:integration --ci --coverageDirectory ./reports/integration
+      - name: Upload Coverage report to CodeCov
+        run: |
+          npx codecov -F unit -f ./reports/unit/*
+          npx codecov -F integration -f ./reports/integration/*
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: islizeqiang/netease-cloud-music-server
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          cache: true
