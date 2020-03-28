@@ -38,17 +38,19 @@ if (!module.parent) {
       `API server listening on ${config.host}:${config.port}, in ${config.env}`,
     );
   });
+
+  // Handle uncaught errors
   server.on('error', handleError);
 
   const errors = ['unhandledRejection', 'uncaughtException'];
 
-  errors.forEach((error) => {
+  errors.forEach(error => {
     process.on(error, handleError);
   });
 
   const signals = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
 
-  signals.forEach((signal) => {
+  signals.forEach(signal => {
     process.once(signal, () => terminate(signal));
   });
 }
