@@ -19,14 +19,14 @@ const spec = require('../spec');
  *           application/json:
  *             example:
  *               name: 'netease-cloud-music-app-server'
- *               version: 'v2.0.0'
- *               description: 'Boilerplate for Koa RESTful API application with Docker, Swagger, Jest, Coveralls, and Circle CI'
+ *               version: 'v1.0.0'
+ *               description: 'UNOFFICIAL server for music.163.com. which provides RESTful APIs of client.'
  *               environments:
- *                 nodeVersion: '10.15.0'
+ *                 nodeVersion: '13.12.0'
  *                 hostname: 'my-pc'
  *                 platform: 'darwin/x64'
  */
-exports.getApiInfo = (ctx) => {
+exports.getApiInfo = ctx => {
   // BUSINESS LOGIC
   const environments = {
     nodeVersion: process.versions.node,
@@ -57,7 +57,7 @@ exports.getApiInfo = (ctx) => {
  *         x-summary: OK
  *         description: Describe Swagger Open API Specification
  */
-exports.getSwaggerSpec = (ctx) => {
+exports.getSwaggerSpec = ctx => {
   ctx.body = spec;
 };
 
@@ -79,7 +79,7 @@ exports.getSwaggerSpec = (ctx) => {
  *             example:
  *               status: 'pass'
  */
-exports.healthcheck = (ctx) => {
+exports.healthcheck = ctx => {
   // TODO: Improve healthcheck logic
   // status: ['pass', 'fail', 'warn']
   const data = {
