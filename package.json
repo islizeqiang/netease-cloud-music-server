@@ -23,8 +23,8 @@
   "main": "app",
   "scripts": {
     "start": "node app",
-    "dev": "NODE_ENV=development nodemon --inspect | pino-pretty -c -l -t",
-    "debug": "nodemon --inspect",
+    "dev": "NODE_ENV=development nodemon --quiet | pino-pretty -c -l -t",
+    "debug": "nodemon --inspect app | pino-pretty -c -l -t",
     "docs": "npx docsify serve docs",
     "test": "NODE_ENV=test jest --passWithNoTests",
     "test:unit": "npm test -- test/unit",
@@ -44,6 +44,7 @@
     "@kasa/koa-logging": "^0.3.0",
     "@kasa/koa-request-id": "^2.0.1",
     "@koa/cors": "^3.0.0",
+    "axios": "^0.19.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "elastic-apm-node": "^3.2.0",
@@ -51,7 +52,9 @@
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^8.0.8",
+    "pac-proxy-agent": "^4.1.0",
     "pino": "^5.14.0",
+    "request": "^2.88.2",
     "swagger-jsdoc": "^4.0.0",
     "uuid": "^7.0.2"
   },

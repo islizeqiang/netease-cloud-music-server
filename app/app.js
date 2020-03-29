@@ -1,13 +1,13 @@
 /* eslint no-underscore-dangle: 0 */
 const Koa = require('koa');
-const logging = require('@kasa/koa-logging');
+// const logging = require('@kasa/koa-logging');
 const requestId = require('@kasa/koa-request-id');
 const apmMiddleware = require('./middlewares/apm');
 const bodyParser = require('./middlewares/body-parser');
 const cors = require('./middlewares/cors');
 const errorHandler = require('./middlewares/error-handler');
 const corsConfig = require('./config/cors');
-const logger = require('./logger');
+// const logger = require('./logger');
 const router = require('./routes');
 
 class App extends Koa {
@@ -29,12 +29,12 @@ class App extends Koa {
     this.use(errorHandler());
     this.use(apmMiddleware());
     this.use(requestId());
-    this.use(
-      logging({
-        logger,
-        overrideSerializers: false,
-      }),
-    );
+    // this.use(
+    //   logging({
+    //     logger,
+    //     overrideSerializers: false,
+    //   }),
+    // );
     this.use(
       bodyParser({
         enableTypes: ['json'],
@@ -65,7 +65,7 @@ class App extends Koa {
 
   async terminate() {
     // TODO: Implement graceful shutdown with pending request counter
-    this.servers.forEach((server) => {
+    this.servers.forEach(server => {
       server.close();
     });
   }
