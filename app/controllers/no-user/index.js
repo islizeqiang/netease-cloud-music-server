@@ -1,1 +1,0 @@
-exports.recommend = require('./recommend');
