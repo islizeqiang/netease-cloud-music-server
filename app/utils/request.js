@@ -8,6 +8,8 @@ const encrypt = require('./crypto');
 const { mobileUserAgent, pcUserAgent } = require('../constants/constants');
 const { sample } = require('./common');
 
+// pre-push: 'npm run test'
+
 // 分配用户代理
 const chooseUserAgent = (ua) => {
   if (ua === 'mobile') {
