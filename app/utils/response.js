@@ -1,6 +1,3 @@
-
-
-
 /**
  * HTTP Status codes
  */
@@ -25,7 +22,7 @@ const STATUS_CODES = {
   NOT_IMPLEMENTED: 501,
   BAD_GATEWAY: 502,
   SERVICE_UNAVAILABLE: 503,
-  GATEWAY_TIMEOUT: 504
+  GATEWAY_TIMEOUT: 504,
 };
 
 const toResponse = (statusCode, params = {}) => {
@@ -35,16 +32,15 @@ const toResponse = (statusCode, params = {}) => {
     return {
       status: 'success',
       data,
-      message
+      message,
     };
-  } 
-    return {
-      status: statusCode < 500 ? 'fail' : 'error',
-      code,
-      data,
-      message
-    };
-  
+  }
+  return {
+    status: statusCode < 500 ? 'fail' : 'error',
+    code,
+    data,
+    message,
+  };
 };
 
 /**

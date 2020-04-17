@@ -53,13 +53,13 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^8.0.8",
     "pac-proxy-agent": "^4.1.0",
-    "pino": "^5.14.0",
+    "pino": "^6.2.0",
     "request": "^2.88.2",
     "swagger-jsdoc": "^4.0.0",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
-    "@umijs/fabric": "^2.0.3",
+    "@umijs/fabric": "^2.0.8",
     "codecov": "^3.6.1",
     "docsify-cli": "^4.4.0",
     "eslint": "^6.8.0",
@@ -70,8 +70,8 @@
     "jest-junit": "^10.0.0",
     "lint-staged": "^10.0.9",
     "nodemon": "^2.0.2",
-    "pino-pretty": "^3.5.0",
-    "prettier": "^1.19.1",
+    "pino-pretty": "^4.0.0",
+    "prettier": "^2.0.4",
     "supertest": "^4.0.2",
     "typescript": "^3.8.3"
   }

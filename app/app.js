@@ -1,9 +1,13 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint no-underscore-dangle: 0 */
 const Koa = require('koa');
+
 // const logging = require('@kasa/koa-logging');
 const requestId = require('@kasa/koa-request-id');
 const apmMiddleware = require('./middlewares/apm');
 const bodyParser = require('./middlewares/body-parser');
+const cookieParser = require('./middlewares/cookie-parser');
 const cors = require('./middlewares/cors');
 const errorHandler = require('./middlewares/error-handler');
 const corsConfig = require('./config/cors');
@@ -35,12 +39,16 @@ class App extends Koa {
     //     overrideSerializers: false,
     //   }),
     // );
+
+    this.use(cookieParser());
+
     this.use(
       bodyParser({
         enableTypes: ['json'],
         jsonLimit: '10mb',
       }),
     );
+
     this.use(
       cors({
         origins: corsConfig.origins,
@@ -65,7 +73,7 @@ class App extends Koa {
 
   async terminate() {
     // TODO: Implement graceful shutdown with pending request counter
-    this.servers.forEach(server => {
+    this.servers.forEach((server) => {
       server.close();
     });
   }
